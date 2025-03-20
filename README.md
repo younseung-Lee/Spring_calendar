@@ -9,12 +9,11 @@
 
 ### 📝 일정 관리 API
 
-| 기능 | 메서드 | URL | 요청 바디 | 응답 (성공) | 응답 (실패) |
+| 기능 | 메서드 | URL | 요청 바디 | Request | 응답 (실패) |
 |------|--------|------------|------------|------------|------------|
-| **일정 생성** | `POST` | `/calendar` | `{ "task": string, "username": string, "password": string }` | `201 Created` + `{ "id": Long, "title": string, "content": string }` + `Location: /calendar/{id}` | `400 Bad Request` (필수값 없음) |
-| **일정 전체 조회** | `GET` | `/calendar` | 없음 | `200 OK` + `[ { "id": Long, "title": string, "content": string }, ... ]` (없으면 `[]`) | 없음 |
-| **선택 일정 조회** | `GET` | `/calendar/{id}` | 없음 | `200 OK` + `{ "id": Long, "title": string, "content": string }` | `404 Not Found` (해당 ID 없음) |
-| **선택 일정 수정** | `PATCH` | `/calendar/{id}` | `{ "task"?: string, "username"?: string, "password": string }` | `200 OK` + `{ "id": Long, "title": string, "content": string }` | `400 Bad Request` (잘못된 요청) <br> `404 Not Found` (해당 ID 없음) |
-| **선택 일정 삭제** | `DELETE` | `/calendar/{id}` | `{ "password": string }`| `204 No Content` | `404 Not Found` (해당 ID 없음) |
+| **일정 생성** | `POST` | `/calendar` | `{ "task": string, "username": string, "password": string }` | `{ "task": string, "username": string}` | `400 Bad Request` (필수값 없음) |
+| **전체 일정 조회** | `GET` | `/calendar` | 없음 | `200 OK` + `[ "id": Long,"task": string,	"username": string,"createdtime": string,"updatedtime": string ]` (없으면 `[]`) | 없음 |
+| **선택 일정 조회** | `GET` | `/calendar/{id}` | 없음 | `200 OK` + `	"id": Long,	"task": string,"username": string,"createdAt": string,"updatedAt": string` | `404 Not Found` (해당 ID 없음) |
+| **선택 일정 수정** | `PATCH` | `/calendar/{id}` | `{"task": string,"username": string,"password": string}` | `200 OK` + `{ "task": string,"username":string,"password": string}` | `400 Bad Request` (잘못된 요청) | 
+| **선택 일정 삭제** | `DELETE` | `/calendar/{id}` | `{ "password": string } | `404 Not Found` (해당 ID 없음) |
 
----
